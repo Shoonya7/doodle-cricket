@@ -33,7 +33,7 @@
     }
 
     body {
-      background: linear-gradient(to bottom, #00a8f1, #679f1f);
+      background: linear-gradient(to bottom, #4b0082, #ff8c00);
       margin: 0;
       padding: 0;
       overflow: hidden;
@@ -50,8 +50,125 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(to bottom, #00a8f1, #679f1f);
+      background: linear-gradient(to bottom, #4b0082, #ff8c00);
       z-index: 100;
+    }
+
+    /* New game environment overlay */
+    .game-environment-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      background: linear-gradient(135deg, rgba(0,125,255,0.3), rgba(0,0,0,0));
+      background-size: 100% 100%;
+    }
+
+    /* Night mode environment (optional) */
+    .night-mode-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      background: linear-gradient(to bottom, rgba(10,15,60,0.7), rgba(10,15,60,0.4));
+      display: none; /* Hidden by default */
+    }
+    
+    /* Add stars to night mode */
+    .night-mode-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(1px 1px at 25px 5px, white, rgba(255,255,255,0)),
+        radial-gradient(1px 1px at 50px 25px, white, rgba(255,255,255,0)),
+        radial-gradient(1px 1px at 125px 20px, white, rgba(255,255,255,0)),
+        radial-gradient(1.5px 1.5px at 50px 75px, white, rgba(255,255,255,0)),
+        radial-gradient(2px 2px at 175px 15px, white, rgba(255,255,255,0)),
+        radial-gradient(2px 2px at 200px 50px, white, rgba(255,255,255,0)),
+        radial-gradient(1px 1px at 225px 100px, white, rgba(255,255,255,0));
+      background-size: 250px 150px;
+      opacity: 0.7;
+    }
+
+    /* Desert environment (optional) */
+    .desert-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      background: linear-gradient(to bottom, rgba(255,182,85,0.4), rgba(255,140,0,0.2));
+      display: none; /* Hidden by default */
+    }
+    
+    /* Add heat waves effect to desert */
+    .desert-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.1) 10px,
+        rgba(255,255,255,0) 10px,
+        rgba(255,255,255,0) 20px
+      );
+      animation: heatwave 10s infinite ease-in-out;
+      opacity: 0.3;
+    }
+    
+    @keyframes heatwave {
+      0% { transform: scaleY(1.0); }
+      50% { transform: scaleY(1.02); }
+      100% { transform: scaleY(1.0); }
+    }
+
+    /* Rainy environment */
+    .rainy-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      background: linear-gradient(to bottom, rgba(75,105,149,0.4), rgba(110,140,180,0.3));
+      display: none; /* Hidden by default */
+    }
+    
+    /* Rainy animation effect */
+    .rainy-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-size: 100% 10px;
+      animation: rain 0.5s linear infinite;
+      opacity: 0.5;
+    }
+    
+    @keyframes rain {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 10px; }
     }
 
     .cricket-logo {
@@ -110,6 +227,21 @@
   
   <div id="q-app"></div>
 
+  <!-- Environment overlays -->
+  <div id="game-environment-overlay" class="game-environment-overlay"></div>
+  <div id="night-mode-overlay" class="night-mode-overlay"></div>
+  <div id="desert-overlay" class="desert-overlay"></div>
+  <div id="rainy-overlay" class="rainy-overlay"></div>
+  
+  <!-- Environment controls -->
+  <div style="position: fixed; bottom: 10px; right: 10px; z-index: 9999; display: flex; gap: 5px;">
+    <button onclick="setEnvironment('default')" style="background: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Default</button>
+    <button onclick="setEnvironment('blue')" style="background: #2196F3; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Blue Sky</button>
+    <button onclick="setEnvironment('night')" style="background: #3F51B5; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Night</button>
+    <button onclick="setEnvironment('desert')" style="background: #FF9800; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Desert</button>
+    <button onclick="setEnvironment('rainy')" style="background: #607D8B; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Rainy</button>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const playButton = document.getElementById("play-button");
@@ -132,6 +264,34 @@
           });
       }
     });
+
+    // Environment switching function
+    function setEnvironment(type) {
+      // Hide all overlays
+      document.getElementById('game-environment-overlay').style.display = 'none';
+      document.getElementById('night-mode-overlay').style.display = 'none';
+      document.getElementById('desert-overlay').style.display = 'none';
+      document.getElementById('rainy-overlay').style.display = 'none';
+      
+      // Show the selected overlay
+      switch(type) {
+        case 'blue':
+          document.getElementById('game-environment-overlay').style.display = 'block';
+          break;
+        case 'night':
+          document.getElementById('night-mode-overlay').style.display = 'block';
+          break;
+        case 'desert':
+          document.getElementById('desert-overlay').style.display = 'block';
+          break;
+        case 'rainy':
+          document.getElementById('rainy-overlay').style.display = 'block';
+          break;
+        default:
+          // Default is no overlay
+          break;
+      }
+    }
   </script>
 </body>
 
