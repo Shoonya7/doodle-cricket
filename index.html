@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doodle Cricket Game 2025</title>
+  <script src="loaders.js"></script>
+  <meta name="description" content="Welcome to the Doodle Cricket Game 2025! Powered By Advance AI Algorithms. This is a game built for you the cricket fan! Every cricket lover can now have the most lightweight mobile cricket game at the palm of their hands! You can play the maximum number of cricket shots without having over limits. Be prepared for awesome fun!">
+  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="icon" type="image/ico" href="icons/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00a8f1">
+  <meta name="apple-mobile-web-app-capable" content="no">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Doodle Cricket">
+  <link rel="apple-touch-icon" href="icons/apple-icon-152x152.png">
+  <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#00a8f1">
+  <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#1f1f1f">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = {
+    corePlugins: {
+      container: false,
+    },
+  };</script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #00a8f1, #679f1f);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #00a8f1, #679f1f);
+      z-index: 100;
+    }
+
+    .cricket-logo {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .play-button {
+      background-color: white;
+      color: #00a8f1;
+      border: none;
+      padding: 12px 42px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
+      margin-top: 20px;
+    }
+
+    .play-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .play-button:active {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    canvas {
+      height: 100% !important;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #q-app {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+  <script type="module" crossorigin src="assets/index-CB9cSSVB.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index-BGn-wZ8K.css">
+</head>
+
+<body>
+  <div id="splash-screen" class="splash-screen">
+    <img src="doodle-cricket.svg" alt="Doodle Cricket" class="cricket-logo">
+    <h1 class="text-white text-3xl font-bold">Doodle Cricket 2025</h1>
+    <p class="text-white text-xl mt-2">The ultimate cricket experience!</p>
+    <button id="play-button" class="play-button">Play</button>
+  </div>
+  
+  <div id="q-app"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const playButton = document.getElementById("play-button");
+      const splashScreen = document.getElementById("splash-screen");
+      const app = document.getElementById("q-app");
+      
+      playButton.addEventListener("click", function() {
+        splashScreen.style.display = "none";
+        app.style.display = "block";
+      });
+      
+      // Register service worker
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js")
+          .then(registration => {
+            console.log("Service Worker registered with scope:", registration.scope);
+          })
+          .catch(error => {
+            console.error("Service Worker registration failed:", error);
+          });
+      }
+    });
+  </script>
+</body>
+
+</html>
