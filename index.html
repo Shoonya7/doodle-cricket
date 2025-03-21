@@ -227,21 +227,6 @@
   
   <div id="q-app"></div>
 
-  <!-- Environment overlays -->
-  <div id="game-environment-overlay" class="game-environment-overlay"></div>
-  <div id="night-mode-overlay" class="night-mode-overlay"></div>
-  <div id="desert-overlay" class="desert-overlay"></div>
-  <div id="rainy-overlay" class="rainy-overlay"></div>
-  
-  <!-- Environment controls -->
-  <div style="position: fixed; bottom: 10px; right: 10px; z-index: 9999; display: flex; gap: 5px;">
-    <button onclick="setEnvironment('default')" style="background: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Default</button>
-    <button onclick="setEnvironment('blue')" style="background: #2196F3; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Blue Sky</button>
-    <button onclick="setEnvironment('night')" style="background: #3F51B5; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Night</button>
-    <button onclick="setEnvironment('desert')" style="background: #FF9800; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Desert</button>
-    <button onclick="setEnvironment('rainy')" style="background: #607D8B; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Rainy</button>
-  </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const playButton = document.getElementById("play-button");
@@ -265,33 +250,6 @@
       }
     });
 
-    // Environment switching function
-    function setEnvironment(type) {
-      // Hide all overlays
-      document.getElementById('game-environment-overlay').style.display = 'none';
-      document.getElementById('night-mode-overlay').style.display = 'none';
-      document.getElementById('desert-overlay').style.display = 'none';
-      document.getElementById('rainy-overlay').style.display = 'none';
-      
-      // Show the selected overlay
-      switch(type) {
-        case 'blue':
-          document.getElementById('game-environment-overlay').style.display = 'block';
-          break;
-        case 'night':
-          document.getElementById('night-mode-overlay').style.display = 'block';
-          break;
-        case 'desert':
-          document.getElementById('desert-overlay').style.display = 'block';
-          break;
-        case 'rainy':
-          document.getElementById('rainy-overlay').style.display = 'block';
-          break;
-        default:
-          // Default is no overlay
-          break;
-      }
-    }
   </script>
 </body>
 
