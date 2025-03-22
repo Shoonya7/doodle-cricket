@@ -4654,15 +4654,17 @@ function So() {
                     return t.preventDefault()
                 }
                 ,
-                wt && (window.addEventListener("touchmove", this.H, !1),
-                document.addEventListener("touchmove", this.H, !1),
-                document.body.addEventListener("touchmove", this.H, !1))
+                wt && (window.addEventListener("touchmove", this.H, { passive: false }),
+                document.addEventListener("touchmove", this.H, { passive: false }),
+                document.body.addEventListener("touchmove", this.H, { passive: false }))
             }
             o(ZI, Ii),
             ZI.prototype.U = function() {
-                wt && (window.removeEventListener("touchmove", this.H, !1),
-                document.removeEventListener("touchmove", this.H, !1),
-                document.body.removeEventListener("touchmove", this.H, !1)),
+                wt && (
+                    window.removeEventListener("touchmove", this.H, { passive: false }),
+                    document.removeEventListener("touchmove", this.H, { passive: false }),
+                    document.body.removeEventListener("touchmove", this.H, { passive: false })
+                ),
                 Ii.prototype.U.call(this)
             }
             ;
@@ -5729,7 +5731,7 @@ W)
           , u = () => {}
           , h = () => {
             console.log("game restart"),
-            window.location.search = "?score=1"
+            window.location = ""
         }
           , a = () => {
             Ao(_("c3BsYXNo"))
