@@ -3498,10 +3498,11 @@ function So() {
             function DI(i) {
                 var t = i.ra.canvas.height
                   , I = .27 * t;
-                i.R.v = i.ra.createLinearGradient(0, I, 0, t - I),
+                i.R.v = i.ra.createLinearGradient(0, I, 0, t - I),// ground color
                 i.R.v.addColorStop(0, "#beda78"),
                 i.R.v.addColorStop(1, "#749948"),
-                i.ka.v = i.ra.createLinearGradient(0, 0, 0, t),
+
+                i.ka.v = i.ra.createLinearGradient(0, 0, 0, t), // sky color
                 i.ka.v.addColorStop(0, "rgb(" + i.V[0] + "," + i.V[1] + "," + i.V[2] + ")"),
                 i.ka.v.addColorStop(.3, "rgb(" + i.W[0] + "," + i.W[1] + "," + i.W[2] + ")"),
                 i.ka.v.addColorStop(1, "#FFF")
@@ -3842,7 +3843,7 @@ function So() {
             }
             var Wi = O.qa();
             function fI() {
-                k.call(this, new D(0,0,0), .15, "#b22"),
+                k.call(this, new D(0,0,0), .15, "#b22"), // red color
                 this.$ = new Yt(.15),
                 y(this.$, this),
                 this.V = this.Fa = 0,
@@ -4248,9 +4249,9 @@ function So() {
             }
             function Ki(i, t, I, g, A, M) {
                 g = g === void 0 ? mi : g,
-                A = A === void 0 ? "#fff" : A,
+                A = A === void 0 ? "#fff" : "#cc1b41", // bat button color
                 M = M === void 0 ? !1 : M,
-                k.call(this, i, 39.6, "#424d21"),
+                k.call(this, i, 39.6, "#424d21"), // bat button shadow color
                 this.v = new b(t),
                 Y(this.v, 0, 0),
                 this.v.Sb(!0),
@@ -4709,7 +4710,7 @@ function So() {
             function Vt(i, t, I) {
                 x.call(this, i === void 0 ? 0 : i, t === void 0 ? 0 : t, I === void 0 ? 0 : I),
                 i = new V(sI,Ni(new D(10,6,0)),{
-                    fillStyle: "#48B"
+                    fillStyle: "#48B" // score color
                 }),
                 y(i, this),
                 i = new V(new D(0,0,-2),Ni(new D(10,6,0)),{
@@ -5126,7 +5127,7 @@ function So() {
                       , c = 112 * Math.cos(i - g / I * (t - i))
                       , r = 112 * Math.sin(i - g / I * (t - i))
                       , A = new V(new D(0,0,0),[new D(A,0,M), new D(c,0,r), new D(c,6,r), new D(A,6,M)],{
-                        fillStyle: "#F9EC31"
+                        fillStyle: "#fa002e" //boundary color
                     });
                     y(A, this)
                 }
