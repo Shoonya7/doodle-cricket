@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Game Landing Page</title>
+    <!-- Cricket Game CSS - imported from ABP Cricket -->
+    <link rel="stylesheet" crossorigin href="https://cricket-abp.vercel.app/assets/index.css">
+    <style>
+        /* Main Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        /* Header Styling */
+        header {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e5799, #207cca);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        /* Game Container Styling */
+        .game-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .game-container h2 {
+            color: #205295;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Documentation Section */
+        .documentation {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: left;
+            margin: 40px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .documentation h2 {
+            color: #205295;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .documentation pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .documentation code {
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 50px 0;
+            gap: 20px;
+        }
+        
+        .feature {
+            flex-basis: 30%;
+            margin-bottom: 25px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature h3 {
+            color: #205295;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer Styling */
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            background-color: #205295;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ABP Cricket Game</h1>
+            <p>Experience the excitement of cricket right in your browser!</p>
+        </header>
+        
+        <div class="game-container">
+            <h2>Play Now</h2>
+            <p>Click below to start the game or use the controls to play</p>
+            
+            <!-- Cricket Game Widget -->
+            <div id="shoonya-cricket"></div>
+        </div>
+        
+        <!-- Documentation Section -->
+        <div class="documentation">
+            <h2>How to Add This Cricket Game to Your Website</h2>
+            <p>Follow these simple steps to embed the ABP Cricket game on your own website:</p>
+            
+            <h3>Step 1: Add the HTML Element</h3>
+            <p>Add this div element where you want the game to appear:</p>
+            <pre><code>&lt;div id="shoonya-cricket"&gt;&lt;/div&gt;</code></pre>
+            
+            <h3>Step 2: Add Required CSS and JavaScript</h3>
+            <p>Add these links in your HTML head or body sections:</p>
+            <pre><code>&lt;!-- In the head section --&gt;
+&lt;link rel="stylesheet" crossorigin href="https://cricket-abp.vercel.app/assets/index.css"&gt;
+
+&lt;!-- Before closing body tag --&gt;
+&lt;script type="module" crossorigin src="https://cricket-abp.vercel.app/assets/index.js"&gt;&lt;/script&gt;</code></pre>
+            
+            <h3>Step 3: That's it!</h3>
+            <p>The game will automatically initialize and display in the specified div.</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>Easy to Play</h3>
+                <p>Simple controls make this game accessible for all cricket fans. Just click and play to experience the thrill of cricket.</p>
+            </div>
+            <div class="feature">
+                <h3>Realistic Gameplay</h3>
+                <p>Experience cricket action with intuitive batting and bowling mechanics that simulate real cricket dynamics.</p>
+            </div>
+            <div class="feature">
+                <h3>Free to Play</h3>
+                <p>Enjoy unlimited cricket action at no cost. Perfect for quick breaks or extended gaming sessions.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 ABP Cricket Game. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Game Script -->
+    <script type="module" crossorigin src="https://cricket-abp.vercel.app/assets/index.js"></script>
+</body>
+</html>
