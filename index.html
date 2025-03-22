@@ -218,25 +218,27 @@
 </head>
 
 <body>
-  <div id="splash-screen" class="splash-screen">
+  <!-- Remove or comment out the splash screen div -->
+  <!-- <div id="splash-screen" class="splash-screen">
     <img src="doodle-cricket.svg" alt="Doodle Cricket" class="cricket-logo">
     <h1 class="text-white text-3xl font-bold">Doodle Cricket 2025</h1>
     <p class="text-white text-xl mt-2">The ultimate cricket experience!</p>
     <button id="play-button" class="play-button">Play</button>
-  </div>
+  </div> -->
   
-  <div id="q-app"></div>
+  <div id="q-app" style="display: block;"></div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const playButton = document.getElementById("play-button");
-      const splashScreen = document.getElementById("splash-screen");
-      const app = document.getElementById("q-app");
+      // Remove the splash screen event listener since we're bypassing it
+      // const playButton = document.getElementById("play-button");
+      // const splashScreen = document.getElementById("splash-screen");
+      // const app = document.getElementById("q-app");
       
-      playButton.addEventListener("click", function() {
-        splashScreen.style.display = "none";
-        app.style.display = "block";
-      });
+      // playButton.addEventListener("click", function() {
+      //   splashScreen.style.display = "none";
+      //   app.style.display = "block";
+      // });
       
       // Register service worker
       if ("serviceWorker" in navigator) {
@@ -249,7 +251,6 @@
           });
       }
     });
-
   </script>
 </body>
 
