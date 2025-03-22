@@ -226,19 +226,44 @@
     <button id="play-button" class="play-button">Play</button>
   </div> -->
   
+  <!-- Add loader that shows until game is ready -->
+  <div id="game-loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: white; z-index: 99;">
+    <div style="width: 80px; height: 80px; border: 8px solid #f3f3f3; border-top: 8px solid #00a8f1; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+    <p style="margin-top: 20px; color: #333; font-size: 1.2rem;">Loading game...</p>
+  </div>
+  
   <div id="q-app" style="display: block;"></div>
+
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Remove the splash screen event listener since we're bypassing it
-      // const playButton = document.getElementById("play-button");
-      // const splashScreen = document.getElementById("splash-screen");
-      // const app = document.getElementById("q-app");
+      const gameLoader = document.getElementById("game-loader");
+      const app = document.getElementById("q-app");
       
-      // playButton.addEventListener("click", function() {
-      //   splashScreen.style.display = "none";
-      //   app.style.display = "block";
-      // });
+      // Check if game has loaded
+      let gameLoaded = false;
+      
+      // Hide loader when game is ready
+      window.addEventListener('load', function() {
+        // Give a small delay to ensure everything is rendered
+        setTimeout(function() {
+          gameLoader.style.display = "none";
+          gameLoaded = true;
+        }, 100); // 1 second delay
+      });
+      
+      // Add a timeout to hide loader even if game takes too long
+      setTimeout(function() {
+        if (!gameLoaded) {
+          gameLoader.style.display = "none";
+        }
+      }, 10000); // 10 seconds max wait time
       
       // Register service worker
       if ("serviceWorker" in navigator) {
