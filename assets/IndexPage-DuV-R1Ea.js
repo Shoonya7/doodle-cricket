@@ -5742,12 +5742,55 @@ W)
             console.log("score", B.value)
         }
           , L = () => {
-            const v = _("UGxheWluZyBAZG9vZGxlY3JpY2tldCBvbiBodHRwczovL2Rvb2RsZWNyaWNrZXQuZ2l0aHViLmlvIPCfj48gYW5kIEkgbWFkZSB7c2NvcmV9IHNjb3JlLgojZG9vZGxlY3JpY2tldCAjY3JpY2tldCAjZ2FtZQ==")
-              , C = _("aHR0cHM6Ly90d2l0dGVyLmNvbS9pbnRlbnQvdHdlZXQ/dGV4dD0=");
-            qI(C + encodeURIComponent(v.replace(_("e3Njb3JlfQ=="), B.value)))
+            // const v = _("UGxheWluZyBAZG9vZGxlY3JpY2tldCBvbiBodHRwczovL2Rvb2RsZWNyaWNrZXQuZ2l0aHViLmlvIPCfj48gYW5kIEkgbWFkZSB7c2NvcmV9IHNjb3JlLgojZG9vZGxlY3JpY2tldCAjY3JpY2tldCAjZ2FtZQ==")
+            //   , C = _("aHR0cHM6Ly90d2l0dGVyLmNvbS9pbnRlbnQvdHdlZXQ/dGV4dD0=");
+            // qI(C + encodeURIComponent(v.replace(_("e3Njb3JlfQ=="), B.value)))
+            // custom function to share on twitter
+            const shareOnWhatsapp = () => {
+
+                // Detect device type
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                let whatsappUrl = "";
+
+                // Define message and encode URL
+                const message = "I'm smashing sixes on ABP Run Chase! 🏏🔥 Play now at https://abplive.com/RunChase and take on the challenge! 🚀 #ABPLive #cricket #game #IPL";
+                const encodedMessage = encodeURIComponent(message);
+
+                if (/android/i.test(userAgent)) {
+                    // Android device
+                    whatsappUrl = `intent://send?text=${encodedMessage}#Intent;scheme=whatsapp;package=com.whatsapp;end;`;
+                } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+                    // iOS device
+                    whatsappUrl = `whatsapp://send?text=${encodedMessage}`;
+                } else {
+                    // Web/desktop fallback
+                    whatsappUrl = `https://web.whatsapp.com/send?text=${encodedMessage}`;
+                }
+
+                // Open WhatsApp link
+                window.open(whatsappUrl, '_blank');
+            }
+            shareOnWhatsapp();
         }
           , G = () => {
-            qI(_("aHR0cHM6Ly9wbGF5Lmdvb2dsZS5jb20vc3RvcmUvYXBwcy9kZXRhaWxzP2lkPWNvbS5hc2lzc3V0aGFyLmNyaWNrZXQ="))
+ 
+            if (navigator.share) {
+                const text = "I'm smashing sixes on ABP Run Chase! 🏏🔥 Play now at https://abplive.com/RunChase and take on the challenge! 🚀 #ABPLive #cricket #game #IPL";
+                const url = "https://abplive.com/RunChase";
+                navigator.share({
+                    title: "Check this out!",
+                    text: text,
+                    url: url,
+                })
+                .then(() => console.log("Successfully shared!"))
+                .catch((error) => {
+                   console.log("Error sharing: " + error);
+                   
+                });
+            } else {
+                // alert("Web Share API not supported in this browser.");
+                console.log("Web Share API not supported in this browser.");
+            }
         }
         ;
         return (v, C) => (en(),
