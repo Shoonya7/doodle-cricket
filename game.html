@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,14 +17,14 @@
             color: #333;
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 30px;
             text-align: center;
         }
-        
+
         /* Header Styling */
         header {
             margin-bottom: 50px;
@@ -33,13 +34,13 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         h1 {
             font-size: 3rem;
             margin-bottom: 10px;
             letter-spacing: 1px;
         }
-        
+
         /* Game Container Styling */
         .game-container {
             background-color: white;
@@ -49,13 +50,13 @@
             margin-bottom: 40px;
             border: 1px solid #e0e0e0;
         }
-        
+
         .game-container h2 {
             color: #205295;
             font-size: 2rem;
             margin-bottom: 15px;
         }
-        
+
         /* Documentation Section */
         .documentation {
             background-color: #f9f9f9;
@@ -65,14 +66,14 @@
             margin: 40px 0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
-        
+
         .documentation h2 {
             color: #205295;
             border-bottom: 2px solid #ddd;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        
+
         .documentation pre {
             background-color: #272822;
             color: #f8f8f2;
@@ -81,11 +82,11 @@
             overflow-x: auto;
             margin: 15px 0;
         }
-        
+
         .documentation code {
             font-family: 'Courier New', monospace;
         }
-        
+
         /* Features Section */
         .features {
             display: flex;
@@ -94,7 +95,7 @@
             margin: 50px 0;
             gap: 20px;
         }
-        
+
         .feature {
             flex-basis: 30%;
             margin-bottom: 25px;
@@ -105,16 +106,16 @@
             transition: transform 0.3s ease;
             border: 1px solid #e0e0e0;
         }
-        
+
         .feature:hover {
             transform: translateY(-5px);
         }
-        
+
         .feature h3 {
             color: #205295;
             margin-bottom: 15px;
         }
-        
+
         /* Footer Styling */
         footer {
             margin-top: 50px;
@@ -125,30 +126,38 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>ABP Cricket Game</h1>
             <p>Experience the excitement of cricket right in your browser!</p>
         </header>
-        
+
         <div class="game-container">
             <h2>Play Now</h2>
             <p>Click below to start the game or use the controls to play</p>
-            
+
             <!-- Cricket Game Widget -->
-           
+
         </div>
-        
+
         <!-- Documentation Section -->
         <div class="documentation">
             <h2>How to Add This Cricket Game to Your Website</h2>
             <p>Follow these simple steps to embed the ABP Cricket game on your own website:</p>
-            
+
             <h3>Step 1: Add the HTML Element</h3>
-            <p>Add this div element where you want the game to appear:</p>
+            <p>Choose one of the following options based on your needs:</p>
+            
+            <h4>Option A: Standard Game Widget</h4>
             <pre><code>&lt;div id="shoonya-cricket"&gt;&lt;/div&gt;</code></pre>
             
+            <h4>Option B: Fullscreen Mode</h4>
+            <p>For a fullscreen immersive experience:</p>
+            <pre><code>&lt;div id="shoonya-cricket-full-screen"&gt;&lt;/div&gt;</code></pre>
+            
+
             <h3>Step 2: Add Required CSS and JavaScript</h3>
             <p>Add these links in your HTML head or body sections:</p>
             <pre><code>&lt;!-- In the head section --&gt;
@@ -156,26 +165,45 @@
 
 &lt;!-- Before closing body tag --&gt;
 &lt;script type="module" crossorigin src="https://cricket-abp.vercel.app/assets/index.js"&gt;&lt;/script&gt;</code></pre>
+
+            <h3>Step 3: Customization Options</h3>
+            <p>You can customize the game appearance by adding data attributes:</p>
             
-            <h3>Step 3: That's it!</h3>
-            <p>The game will automatically initialize and display in the specified div.</p>
+            <h4>For Floating Button:</h4>
+            <pre><code>&lt;div id="shoonya-cricket-floating" 
+     data-position="bottom-right" 
+     data-color="#ff5722"
+     data-text="Play Cricket"&gt;
+&lt;/div&gt;</code></pre>
+            <p>Supported positions: bottom-right (default), bottom-left, top-right, top-left</p>
+            
+            <h4>For Fullscreen Mode:</h4>
+            <pre><code>&lt;div id="shoonya-cricket-full-screen" 
+     data-exit-text="Exit Game"
+     data-loading-text="Loading Cricket..."&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>Step 4: That's it!</h3>
+            <p>The game will automatically initialize and display according to your chosen mode.</p>
         </div>
-        
+
         <div class="features">
             <div class="feature">
                 <h3>Easy to Play</h3>
-                <p>Simple controls make this game accessible for all cricket fans. Just click and play to experience the thrill of cricket.</p>
+                <p>Simple controls make this game accessible for all cricket fans. Just click and play to experience the
+                    thrill of cricket.</p>
             </div>
             <div class="feature">
                 <h3>Realistic Gameplay</h3>
-                <p>Experience cricket action with intuitive batting and bowling mechanics that simulate real cricket dynamics.</p>
+                <p>Experience cricket action with intuitive batting and bowling mechanics that simulate real cricket
+                    dynamics.</p>
             </div>
             <div class="feature">
                 <h3>Free to Play</h3>
                 <p>Enjoy unlimited cricket action at no cost. Perfect for quick breaks or extended gaming sessions.</p>
             </div>
         </div>
-        
+
         <footer>
             <p>&copy; 2023 ABP Cricket Game. All rights reserved.</p>
         </footer>
@@ -184,4 +212,5 @@
     <!-- Game Script -->
     <script type="module" crossorigin src="https://cricket-abp.vercel.app/assets/index.js"></script>
 </body>
+
 </html>
