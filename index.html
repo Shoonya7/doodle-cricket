@@ -212,6 +212,38 @@
       height: 100vh;
       width: 100vw;
     }
+    
+    /* Mute button styles */
+    .mute-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transition: all 0.2s ease;
+    }
+    
+    .mute-button:hover {
+      transform: scale(1.1);
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .mute-icon, .unmute-icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .unmute-icon {
+      display: none;
+    }
   </style>
   <script type="module" crossorigin src="assets/index-CB9cSSVB.js"></script>
   <link rel="stylesheet" crossorigin href="assets/index-BGn-wZ8K.css">
@@ -232,6 +264,18 @@
     <p style="margin-top: 20px; color: #333; font-size: 1.2rem;">Loading game...</p>
   </div>
   
+  <!-- Mute Button -->
+  <div id="mute-button" class="mute-button">
+    <!-- Sound On Icon (Default) -->
+    <svg class="mute-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333">
+      <path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+    </svg>
+    <!-- Sound Off Icon (Hidden initially) -->
+    <svg class="unmute-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333">
+      <path d="M12,4L9.91,6.09L12,8.18V4M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73L4.27,3M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z" />
+    </svg>
+  </div>
+  
   <div id="q-app" style="display: block;"></div>
 
   <style>
@@ -245,9 +289,64 @@
     document.addEventListener("DOMContentLoaded", function() {
       const gameLoader = document.getElementById("game-loader");
       const app = document.getElementById("q-app");
+      const muteButton = document.getElementById("mute-button");
+      const muteIcon = document.querySelector(".mute-icon");
+      const unmuteIcon = document.querySelector(".unmute-icon");
       
       // Check if game has loaded
       let gameLoaded = false;
+      
+      // Mute state
+      let isMuted = false;
+      
+      // Store the game sound reference
+      let gameSound = null;
+      
+      // Function to toggle mute
+      function toggleMute() {
+        isMuted = !isMuted;
+        
+        // Show/hide appropriate icon
+        if (isMuted) {
+          muteIcon.style.display = "none";
+          unmuteIcon.style.display = "block";
+        } else {
+          muteIcon.style.display = "block";
+          unmuteIcon.style.display = "none";
+        }
+        
+        // Try to access game's sound manager
+        if (window.Howler) {
+          // This works with Howler.js which is commonly used for game audio
+          window.Howler.mute(isMuted);
+        }
+        
+        // Store mute preference in localStorage
+        localStorage.setItem('gameMuted', isMuted);
+        
+        // Alternate approach for specific game variables if Howler isn't detected
+        if (window.game && window.game.sound) {
+          window.game.sound.mute = isMuted;
+        }
+        
+        // Broadcast a custom event that the game can listen for
+        document.dispatchEvent(new CustomEvent('game-audio-changed', { 
+          detail: { muted: isMuted } 
+        }));
+      }
+      
+      // Add click event to mute button
+      muteButton.addEventListener("click", toggleMute);
+      
+      // Check for saved preference
+      if (localStorage.getItem('gameMuted') === 'true') {
+        // Apply saved preference on load
+        isMuted = true;
+        muteIcon.style.display = "none";
+        unmuteIcon.style.display = "block";
+        
+        // We'll apply mute once the game loads
+      }
       
       // Hide loader when game is ready
       window.addEventListener('load', function() {
@@ -255,7 +354,12 @@
         setTimeout(function() {
           gameLoader.style.display = "none";
           gameLoaded = true;
-        }, 100); // 1 second delay
+          
+          // Apply mute setting once game is loaded
+          if (isMuted && window.Howler) {
+            window.Howler.mute(true);
+          }
+        }, 100);
       });
       
       // Add a timeout to hide loader even if game takes too long
@@ -275,6 +379,14 @@
             console.error("Service Worker registration failed:", error);
           });
       }
+      
+      // Listen for audio context ready events
+      document.addEventListener('audioContextReady', function(e) {
+        // Apply saved mute setting to the newly created audio context
+        if (isMuted && window.Howler) {
+          window.Howler.mute(true);
+        }
+      });
     });
   </script>
 </body>

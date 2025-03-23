@@ -1,3 +1,4 @@
+// version 1.0.0
 function __vite__mapDeps(indexes) {
   if (!__vite__mapDeps.viteFileDeps) {
       __vite__mapDeps.viteFileDeps = ["assets/IndexPage-DuV-R1Ea.js", "assets/utils-DMILY4l8.js", "assets/IndexPage-D9E146JY.css", "assets/PrivacyPage-DvoeqIe4.js"]
