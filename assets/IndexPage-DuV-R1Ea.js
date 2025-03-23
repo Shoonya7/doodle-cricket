@@ -4133,7 +4133,7 @@ function So() {
                 i.lineTo(0, 1.5); // Bottom point (increased height)
                 i.lineTo(-1.05, 0); // Left point (increased width)
                 i.closePath();
-                i.fillStyle = this.fillStyle;
+                i.fillStyle = "#cc1b41"; //this.fillStyle;
                 i.fill();
                 i.stroke();
                 
@@ -5711,7 +5711,7 @@ function So() {
     G(_("YQ=="), [0, 2, 3, 4, 7, 8, 9, 16]),
     G(_("dQ=="), [0, 1, 2, 3, 4, 5, 6, 51, 52, 53, 54])
 }
-const Lo = "assets/image.svg"
+const Lo = "assets/image-v1.svg"
   , To = W => (ao("data-v-22ea9ad4"),
 W = W(),
 No(),
@@ -5797,15 +5797,21 @@ W)
         }
           , G = () => {
             const text = "I'm smashing sixes on ABP Run Chase! 🏏🔥 Play now at https://abplive.com/RunChase and take on the challenge! 🚀 #ABPLive #cricket #game #IPL";
+            const title = "ABP Run Chase";
             if (navigator.share) {
               
                 navigator.share({
-                    title: "ABP Run Chase",
+                    title: title,
                     text: text,
                 })
                 .then(() => console.log("Successfully shared!"))
                 .catch((error) => {
                    console.log("Error sharing: " + error);
+                   // if error contains "NotAllowedError"
+                   if (error.message.includes("Permission denied")) {
+                    window.parent.postMessage({ action: "share", text, title }, "*");
+                   }
+
                    
                 });
             } else {
