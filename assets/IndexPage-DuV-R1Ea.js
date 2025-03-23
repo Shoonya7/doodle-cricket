@@ -5815,7 +5815,7 @@ W)
                    
                 });
             } else {
-                // alert("Web Share API not supported in this browser.");
+                alert("Web Share API not supported in this browser.");
                 console.log("Web Share API not supported in this browser.");
             }
         }
