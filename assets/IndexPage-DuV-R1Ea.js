@@ -4106,27 +4106,50 @@ function So() {
             }
             o(kt, k),
             kt.prototype.ya = function(i) {
-                k.prototype.ya.call(this, i),
-                100 < d(this).y && (this.H = !1)
+                k.prototype.ya.call(this, i);
+            
+                // Instead of going straight up, add slight left-right movement
+                this.S.x += 0.05 * Math.sin(d(this).y / 5);
+            
+                // Remove when it goes too high
+                if (d(this).y > 100) {
+                    this.H = false;
+                }
             }
             ,
             kt.prototype.Ea = function(i) {
-                8 < d(this).y && (i.strokeStyle = "#000",
-                i.beginPath(),
-                i.lineWidth = .04,
-                i.moveTo(0, 0),
-                i.lineTo(0, 3),
-                i.stroke()),
-                k.prototype.Ea.call(this, i),
-                i.beginPath(),
-                i.moveTo(0, .9),
-                i.lineTo(-.25, 1.25),
-                i.lineTo(.25, 1.25),
-                i.closePath(),
-                i.fill()
-            }
-            ;
-            var Hg = "#FD0 #FD0 #4ED #9F0 #9F0 #F0F".split(" ");
+                // Draw the kite's string
+                i.strokeStyle = "#000"; 
+                i.beginPath();
+                i.lineWidth = 0.04;
+                i.moveTo(0, 0);
+                i.lineTo(0, 3.5); // Increased string length
+                i.stroke();
+                
+                // Draw the kite (diamond shape)
+                i.beginPath();
+                i.moveTo(0, -1.5); // Top point (increased height)
+                i.lineTo(1.05, 0); // Right point (increased width)
+                i.lineTo(0, 1.5); // Bottom point (increased height)
+                i.lineTo(-1.05, 0); // Left point (increased width)
+                i.closePath();
+                i.fillStyle = this.fillStyle;
+                i.fill();
+                i.stroke();
+                
+                // Draw kite tail decorations
+                i.beginPath();
+                i.moveTo(0, 1.5); // Adjusted for new kite bottom
+                i.lineTo(-0.3, 1.8); // Adjusted tail position
+                i.lineTo(0.3, 1.8); // Adjusted tail position
+                i.closePath();
+                i.fill();
+                i.stroke();
+
+            };
+            
+            
+            var Hg = "#FD0 #FD0 #4ED #9F0 #9F0 #F0F".split(" ");// ballon color
             function zI(i, t, I) {
                 b.call(this, fn, i, t === void 0 ? 0 : t, I === void 0 ? 0 : I),
                 Y(this, .5, .3),
@@ -4710,7 +4733,7 @@ function So() {
             function Vt(i, t, I) {
                 x.call(this, i === void 0 ? 0 : i, t === void 0 ? 0 : t, I === void 0 ? 0 : I),
                 i = new V(sI,Ni(new D(10,6,0)),{
-                    fillStyle: "#48B" // score color
+                    fillStyle: "#48B" // score board color
                 }),
                 y(i, this),
                 i = new V(new D(0,0,-2),Ni(new D(10,6,0)),{
@@ -5773,14 +5796,12 @@ W)
             shareOnWhatsapp();
         }
           , G = () => {
- 
+            const text = "I'm smashing sixes on ABP Run Chase! 🏏🔥 Play now at https://abplive.com/RunChase and take on the challenge! 🚀 #ABPLive #cricket #game #IPL";
             if (navigator.share) {
-                const text = "I'm smashing sixes on ABP Run Chase! 🏏🔥 Play now at https://abplive.com/RunChase and take on the challenge! 🚀 #ABPLive #cricket #game #IPL";
-                const url = "https://abplive.com/RunChase";
+              
                 navigator.share({
-                    title: "Check this out!",
+                    title: "ABP Run Chase",
                     text: text,
-                    url: url,
                 })
                 .then(() => console.log("Successfully shared!"))
                 .catch((error) => {
