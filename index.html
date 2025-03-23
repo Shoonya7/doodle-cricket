@@ -387,6 +387,22 @@
           window.Howler.mute(true);
         }
       });
+
+      // Add game over detection to hide mute button
+      function hideMuteButton() {
+        muteButton.style.display = "none";
+      }
+      
+      
+      // Method 2: Listen for postMessage events from the game
+      window.addEventListener('message', function(event) {
+        // Many games use postMessage to communicate with the parent
+        const data = event.data;
+        if (data && (data.type === 'gameOver' || data.status === 'gameOver')) {
+          hideMuteButton();
+        }
+      });
+      
     });
   </script>
 </body>

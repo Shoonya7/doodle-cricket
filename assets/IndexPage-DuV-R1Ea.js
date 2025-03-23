@@ -2213,6 +2213,7 @@ function So() {
             }
             ;
             function y(i, t) {
+                // console.log("======y====> ",i,t);
                 if (i.Tb(!0),
                 i.ac(!0),
                 i.ma) {
@@ -3020,6 +3021,15 @@ function So() {
                 this.H = []
             }
             function J(i, t, I) {
+                if (t==2){ // if t=2, game over
+                 
+                   // set globe
+                   postMessage({
+                    type: 'gameOver',
+                    status: 'gameOver'
+                   });
+                   
+                }
                 for (var g = i.H.slice(0), A = 0; A < g.length; A++)
                     i.H.indexOf(g[A]) !== -1 && g[A].Za(t, I)
             }
@@ -3081,6 +3091,7 @@ function So() {
             }
             qi(Ci);
             function V(i, t, I) {
+                // console.log("======V====> ");
                 var A = I === void 0 ? {} : I;
                 I = A.fillStyle === void 0 ? null : A.fillStyle;
                 var g = A.strokeStyle === void 0 ? null : A.strokeStyle
@@ -3088,6 +3099,7 @@ function So() {
                 si.call(this, i),
                 this.ha = t,
                 this.V = ie(t, function(M) {
+                    // console.log("======V====> ",M);
                     return M.H()
                 }),
                 this.R = !0,
@@ -4260,6 +4272,8 @@ function So() {
             }
             ;
             function Zg(i) {
+                // on run complete
+                // console.log("======Zg====> ");
                 Bi(i.R, 0),
                 i.ta.H = !0,
                 i.V.H = !1,
@@ -4271,6 +4285,7 @@ function So() {
                 }))
             }
             function Ki(i, t, I, g, A, M) {
+                // console.log("======button====> ",t);
                 g = g === void 0 ? mi : g,
                 A = A === void 0 ? "#fff" : "#cc1b41", // bat button color
                 M = M === void 0 ? !1 : M,
@@ -4342,6 +4357,7 @@ function So() {
                 return document[i.ha] || t == "hidden"
             }
             function Qe(i) {
+                // console.log("======Qe====> ");
                 var t = i.R || i.T;
                 i.ma && !t ? (i.ma = !1,
                 i.va(),
@@ -4491,10 +4507,13 @@ function So() {
                 return new D(d(i).x,d(i).y + .6,d(i).z)
             }
             HI.prototype.ya = function(i) {
+               
                 b.prototype.ya.call(this, i);
                 var t = this.v.Aa.H - this.Aa.H;
                 if (2 < Math.abs(t) && (this.Hb = 0 > t),
                 this.v.getState() == 2 && 2 >= d(this.v).y) {
+                   
+                    
                     if (t = Tt(ki(this.v), ki(this)),
                     1.1 > t) {
                         Fg(this);
@@ -4503,12 +4522,14 @@ function So() {
                     t < 1.1 * 3 && (this.V = 1)
                 }
                 if (this.V == 1) {
+                   
                     var t = d(this.v)
                       , I = d(this)
                       , g = this.v.v.v;
                     if (2 > ai(t, I))
                         t = t.H();
                     else {
+                       
                         var I = ki(this)
                           , A = this.v.R
                           , M = I;
@@ -4532,6 +4553,7 @@ function So() {
                     t = t.scale(1 / ee(t)),
                     i = st(t.scale(5 * i / 1e3), d(this)),
                     62 > ai(i, R) && this.Da(i))
+                   
                 }
             }
             ;
@@ -4825,15 +4847,21 @@ function So() {
                     Mi.hasOwnProperty(g) && i.push(g + ":" + Mi[g])
             }
             function RI(i, t, I) {
+              
                 x.call(this);
                 var g = this;
                 this.ta = i,
                 this.Ga = I,
                 this.T = new Ge(new D(0,150,0),function() {
+                    // bat click
+                    // console.log("======T====> ");
+                  
                     g.v.R = [],
                     J(O.qa(), 7)
                 }
                 ,function() {
+                    // bat click
+                    // console.log("======NT====> ");
                     J(O.qa(), 8, g.W == 2)
                 }
                 ),
@@ -4858,20 +4886,20 @@ function So() {
                     Vi(6)
                 }
                 ),
-                y(this.V, this.$),
+                y(this.V, this.$), //game over button Attach button to parent, making it part of the visible hierarchy
                 this.ka = new Ki(new D(-i,0,0),Ig,function() {
                     J(O.qa(), 13)
                 }
                 ),
                 Y(this.ka.v, .05, -.01),
-                y(this.ka, this.$),
+                y(this.ka, this.$), //game over button  Attach button to parent, making it part of the visible hierarchy
                 this.U = new Ki(new D(0,0,0),tg,function() {
                     return J(O.qa(), 5)
                 }
                 ),
                 H(this.U.v, 1.1),
                 Y(this.U.v, .05, 0),
-                y(this.U, this.$),
+                y(this.U, this.$), //game over button  Attach button to parent, making it part of the visible hierarchy
                 this.Ca = !1,
                 this.va = new kI,
                 this.va.Da(0, -20, 0),
@@ -5711,7 +5739,7 @@ function So() {
     G(_("YQ=="), [0, 2, 3, 4, 7, 8, 9, 16]),
     G(_("dQ=="), [0, 1, 2, 3, 4, 5, 6, 51, 52, 53, 54])
 }
-const Lo = "assets/image-v1.svg"
+const Lo = "assets/image-v2.svg"
   , To = W => (ao("data-v-22ea9ad4"),
 W = W(),
 No(),
@@ -5797,38 +5825,20 @@ W)
         }
           , G = () => {
             const text = "I'm smashing sixes on ABP Run Chase! 🏏🔥 Play now at https://abplive.com/RunChase and take on the challenge! 🚀 #ABPLive #cricket #game #IPL";
-            const title = "ABP Run Chase";
-            if (navigator.share) {
-              
-                navigator.share({
-                    title: title,
-                    text: text,
-                })
-                .then(() => console.log("Successfully shared!"))
-                .catch((error) => {
-                   console.log("Error sharing: " + error);
-                   // if error contains "NotAllowedError"
-                   if (error.message.includes("Permission denied")) {
-                    window.parent.postMessage({ action: "share", text, title }, "*");
-                   }
-
-                   
-                });
-            } else {
-                alert("Web Share API not supported in this browser.");
-                console.log("Web Share API not supported in this browser.");
-            }
+            // share on x
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${text}`;
+            window.open(twitterUrl, '_blank');
         }
         ;
         return (v, C) => (en(),
         jo(oo, null, {
             default: lo( () => [Do(wo, {
-                onG1: a,
-                onG9: T,
-                onU6: L,
-                onU3: G,
-                onG4: u,
-                onG5: h
+                onG1: a,     // Splash screen function
+                    onG9: T,     // Update score function
+                    onU6: L,     // WhatsApp share function
+                    onU3: G,     // Web Share API function
+                    onG4: u,     // Empty function
+                    onG5: h      // Game restart function
             })]),
             _: 1
         }))
