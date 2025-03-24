@@ -5739,7 +5739,7 @@ function So() {
     G(_("YQ=="), [0, 2, 3, 4, 7, 8, 9, 16]),
     G(_("dQ=="), [0, 1, 2, 3, 4, 5, 6, 51, 52, 53, 54])
 }
-const Lo = "assets/image-v2.svg"
+const Lo = "assets/image-v3.svg"
   , To = W => (ao("data-v-22ea9ad4"),
 W = W(),
 No(),
