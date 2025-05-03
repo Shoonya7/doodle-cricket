@@ -5798,6 +5798,9 @@ W)
             // qI(C + encodeURIComponent(v.replace(_("e3Njb3JlfQ=="), B.value)))
             // custom function to share on twitter
             const shareOnWhatsapp = () => {
+                // already not implemented
+                window.alert("Coming soon!");
+                return;
 
                 // Detect device type
                 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -5824,6 +5827,9 @@ W)
             shareOnWhatsapp();
         }
           , G = () => {
+            //  already not implemented
+            window.alert("Coming soon!");
+            return;
             const text = "I'm smashing sixes on ABP Run Chase! 🏏🔥 Play now at https://abplive.com/RunChase and take on the challenge! 🚀 #ABPLive #cricket #game #IPL";
             // share on x
             const twitterUrl = `https://twitter.com/intent/tweet?text=${text}`;
